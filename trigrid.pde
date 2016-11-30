@@ -1,4 +1,4 @@
-ArrayList<TriangleClass> triangles;
+/* ArrayList<TriangleClass> triangles;
 final float side = 75;
 final color COLOR1 = 255, COLOR2 = #ff8025, COLOR3 = 100, COLOR4 = 0;
 final float altitude = side * (sqrt(3) / 2);
@@ -113,4 +113,18 @@ class TriangleClass {
 
     triangle(x1, y1, x2, y2, x3, y3);
   }
+} */
+
+void setup() {
+  size(400, 200);
+  textSize(48);
+  textAlign(CENTER);
 }
+
+
+void draw() {
+  background(#122389);
+  fill(#EEDFDF);
+  text("Hello World!", width/2, height/2);
+}
+
