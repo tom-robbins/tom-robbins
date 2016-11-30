@@ -107,7 +107,7 @@ class TriangleClass {
   void display() {
     fill(myColor);
     if (myColor == COLOR1)
-      stroke(220);
+      stroke(240);
     else
       noStroke();
 
