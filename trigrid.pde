@@ -1,6 +1,6 @@
 ArrayList<TriangleClass> triangles;
 final float side = 50;
-final color COLOR1 = 255, COLOR2 = #ff8025, COLOR3 = 100, COLOR4 = 0;
+COLOR1 = 255, COLOR2 = #e0cda7, COLOR3 = #2a334f, COLOR4 = #bb1515;
 final float altitude = side * (sqrt(3) / 2);
 
 void setup()
