@@ -1,12 +1,12 @@
-/* ArrayList<TriangleClass> triangles;
-final float side = 75;
+ArrayList<TriangleClass> triangles;
+final float side = 50;
 final color COLOR1 = 255, COLOR2 = #ff8025, COLOR3 = 100, COLOR4 = 0;
 final float altitude = side * (sqrt(3) / 2);
 
 void setup()
 {
-  size(820, 640);
-  stroke(220);
+  size(window.innerWidth, window.innerHeight);
+  stroke(240);
   smooth();
 
   triangles = new ArrayList<TriangleClass>();
@@ -113,18 +113,14 @@ class TriangleClass {
 
     triangle(x1, y1, x2, y2, x3, y3);
   }
-} */
-
+}
+/*
 void setup() {
-  size(400, 200);
-  textSize(48);
-  textAlign(CENTER);
+   size(200, 200);
+   background(100);
+   stroke(255);
+   ellipse(50, 50, 25, 25);
+   println("hello web!");
 }
 
-
-void draw() {
-  background(#122389);
-  fill(#EEDFDF);
-  text("Hello World!", width/2, height/2);
-}
-
+*/
