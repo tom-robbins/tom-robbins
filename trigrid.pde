@@ -114,13 +114,3 @@ class TriangleClass {
     triangle(x1, y1, x2, y2, x3, y3);
   }
 }
-/*
-void setup() {
-   size(200, 200);
-   background(100);
-   stroke(255);
-   ellipse(50, 50, 25, 25);
-   println("hello web!");
-}
-
-*/

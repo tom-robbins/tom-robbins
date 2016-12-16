@@ -1,0 +1,21 @@
+.name {
+
+  margin-top: 45vh;
+  text-align: center;
+}
+
+#bar {
+  text-align: center;
+}
+
+a:link {
+
+  color: rgb(90,90,90);
+  text-decoration: none;
+}
+
+a:visited {
+
+  color: rgb(150,150,150);
+  text-decoration: none;
+}
