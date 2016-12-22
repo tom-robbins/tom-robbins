@@ -1,6 +1,3 @@
-import processing.sound.*;
-SoundFile bells;
-
 SnowFlake[] snow = new SnowFlake[width*5];
 
 void setup() {
@@ -9,8 +6,6 @@ void setup() {
   for (int i = 0; i < snow.length; i++) {
     snow[i] = new SnowFlake();
   }
-  bells = new SoundFile(this, "bells.mp3");
-  bells.loop();
 }
 
 void draw() {
