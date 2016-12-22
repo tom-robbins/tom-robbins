@@ -2,7 +2,7 @@ SnowFlake[] snow = new SnowFlake[width*5];
 
 void setup() {
   frameRate(30);
-  fullScreen();
+  size(window.innerWidth, window.innerHeight);
   for (int i = 0; i < snow.length; i++) {
     snow[i] = new SnowFlake();
   }
