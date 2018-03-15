@@ -7,7 +7,6 @@ int changeTime = 360;
 
 void setup() {
   frameRate(60);
-  size(640,640);
   background(prevColor[0], prevColor[1], prevColor[2]);
 } 
 
