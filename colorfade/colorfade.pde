@@ -7,8 +7,9 @@ int changeTime = 360;
 
 void setup() {
   frameRate(60);
+  size(window.innerWidth, window.innerHeight);
   background(prevColor[0], prevColor[1], prevColor[2]);
-} 
+}
 
 void draw() {
   if (frame == changeTime) {
