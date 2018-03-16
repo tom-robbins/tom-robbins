@@ -34,8 +34,8 @@ void setup() {
   frameRate(60);
   frame = 0;
   
-  size(window.innerWidth, window.innerHeight);
-  // size(400, 400);
+  // size(window.innerWidth, window.innerHeight);
+  size(400, 400);
   
   for (int i = 0; i < nextColor.length; i++) {
       prevColor[i] = 0;
@@ -78,11 +78,6 @@ void drawDirections() {
 }
 
 void drawScore() {
-  for (int i = 0; i < tiles.size(); i++) {
-    ColorTime ct = (ColorTime) tiles.get(i);
-    println(ct.c1);
-  }
-  println(tiles);
   if (tiles.size() < 2) {
     return;
   }
@@ -93,12 +88,10 @@ void drawScore() {
     ColorTime ct = (ColorTime) tiles.get(i);
     sum += ct.ticks;
   }
-  int unitWidth = width / sum;
+  float unitWidth = width / (float) sum;
   for (int i = 0; i < tiles.size(); i++) {
     ColorTime ct = (ColorTime) tiles.get(i);
-    int gradientWidth = unitWidth * ct.ticks;
-    // println(ct.c1);
-    println(ct.c2);
+    float gradientWidth = unitWidth * ct.ticks;
     setGradient(x, y, gradientWidth, 40, ct.c1, ct.c2, X_AXIS);
     x += gradientWidth;
   }
@@ -177,7 +170,6 @@ void draw() {
   
   for (int i = 0; i < prevColor.length; i++) {
     newColor[i] = prevColor[i] + (differenceVector[i] * (frame / (float) changeTime));
-    // println((differenceVector[i] * (frame * (float) changeTime)));
   }
   noStroke();
   fill(newColor[0], newColor[1], newColor[2]);
