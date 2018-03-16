@@ -34,8 +34,8 @@ void setup() {
   frameRate(60);
   frame = 0;
   
-  // size(window.innerWidth, window.innerHeight);
-  size(400, 400);
+  size(window.innerWidth, window.innerHeight);
+  //size(400, 400);
   
   for (int i = 0; i < nextColor.length; i++) {
       prevColor[i] = 0;
@@ -68,7 +68,7 @@ void drawTiles() {
 
 void drawDirections() {
   int x = 20;
-  int y = height - 100;
+  int y = height - 80;
   fill(10, 50);
   noStroke();
   rect(x, y, 170, 80, 10, 10, 10, 10);
