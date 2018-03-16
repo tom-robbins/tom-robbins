@@ -3,7 +3,7 @@ float[] nextColor = {255, 255, 255};
 float[] newColor = new float[3];
 float[] differenceVector = new float[3];
 
-int initialChangeTime = 480;
+int initialChangeTime = 360;
 
 int frame;
 int changeTime = 120;
@@ -36,8 +36,8 @@ void setup() {
   frameRate(60);
   frame = 0;
   
-   size(window.innerWidth, window.innerHeight);
-   // size(400, 400);
+  size(window.innerWidth, window.innerHeight);
+  // size(400, 400);
   
   for (int i = 0; i < nextColor.length; i++) {
       prevColor[i] = 0;
@@ -50,6 +50,8 @@ void setup() {
   light = loadFont("Helvetica-24.vlw");
   textFont(light);
   
+  textAlign(CENTER, CENTER);
+  text("Welcome, 313", width/2, height/2);
 }
 
 void drawTiles() {
