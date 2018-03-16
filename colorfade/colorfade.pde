@@ -51,7 +51,7 @@ void setup() {
   textFont(light);
   
   textAlign(CENTER, CENTER);
-  text("Welcome, 313", width/2, height/2);
+  text("Welcome, 313 (Press 's' to begin)", width/2, height/2);
   textAlign(LEFT, BOTTOM);
 }
 
