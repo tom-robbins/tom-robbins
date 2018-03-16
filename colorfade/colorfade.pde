@@ -45,7 +45,7 @@ void setup() {
   
   tiles = new ArrayList();
   
-  light = loadFont("Helvetica-18.vlw");
+  light = loadFont("Helvetica-24.vlw");
   textFont(light);
   
 }
@@ -74,7 +74,7 @@ void drawDirections() {
   rect(x, y, 170, 80, 10, 10, 10, 10);
   fill(255);
   text("r\ns\n1-9", x + 10, y + 10, 170, 80);
-  text(" - restart\n - start / stop\n - set speed", x + 40, y + 10, 170, 80);
+  text(" - restart\n - show score\n - set speed", x + 40, y + 10, 170, 80);
 }
 
 void drawScore() {
@@ -83,44 +83,23 @@ void drawScore() {
   }
   int x = 0;
   int y = 0;
+  int scoreHeight = height;
   int sum = 0;
-  for (int i = 0; i < tiles.size(); i++) {
-    ColorTime ct = (ColorTime) tiles.get(i);
+  ColorTime ct;
+  for (int i = 1; i < tiles.size(); i++) {
+    ct = (ColorTime) tiles.get(i);
     sum += ct.ticks;
   }
   float unitWidth = width / (float) sum;
-  for (int i = 0; i < tiles.size(); i++) {
-    ColorTime ct = (ColorTime) tiles.get(i);
+  for (int i = 1; i < tiles.size(); i++) {
+    ct = (ColorTime) tiles.get(i);
     float gradientWidth = unitWidth * ct.ticks;
-    setGradient(x, y, gradientWidth, 40, ct.c1, ct.c2, X_AXIS);
+    setGradient(x, y, gradientWidth, scoreHeight, ct.c1, ct.c2, X_AXIS);
     x += gradientWidth;
   }
-  
+  ct = (ColorTime) tiles.get(tiles.size() - 1);
+  setGradient(x, y, width - x, scoreHeight, ct.c1, ct.c2, X_AXIS);
 }
-
-//void drawScore() {
-//  if (tiles.size() < 2) {
-//    return;
-//  }
-//  int x = 0;
-//  int y = 0;
-//  int gradientHeight = 40;
-//  float gradientWidth = width / (float) (tiles.size() - 1);
-//  for (int i = 1; i < tiles.size(); i++) {
-//    float[] tile1 = (float[]) tiles.get(i-1);
-//    float[] tile2 = (float[]) tiles.get(i);
-//    color c1 = color(tile1[0], tile1[1], tile1[2]);
-//    color c2 = color(tile2[0], tile2[1], tile2[2]);
-//    setGradient(x, y, gradientWidth, gradientHeight, c1, c2, X_AXIS);
-    
-//    if (x + gradientWidth >= width) {
-//      x = 0;
-//      y += gradientHeight;
-//    } else {
-//      x += gradientWidth;
-//    }
-//  }
-//}
 
 void hideScore() {
   fill(0);
@@ -173,7 +152,7 @@ void draw() {
   }
   noStroke();
   fill(newColor[0], newColor[1], newColor[2]);
-  rect(0, 40, width, height - 40);
+  rect(0, 0, width, height);
   drawDirections();
   frame++;
 }
