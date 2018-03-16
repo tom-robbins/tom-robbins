@@ -1,4 +1,4 @@
-float[] prevColor = {255, 255, 255};
+float[] prevColor = {255, 255, 255}; //<>// //<>//
 float[] nextColor = {255, 255, 255};
 float[] newColor = new float[3];
 float[] differenceVector = new float[3];
@@ -9,6 +9,19 @@ int newChangeTime = changeTime;
 
 int tileSize = 20;
 ArrayList tiles;
+
+class ColorTime {
+  color c1;
+  color c2;
+  int ticks;
+  
+  ColorTime(float[] l1, float[] l2, int t) {
+    c1 = color(l1[0], l1[1], l1[2]);
+    c2 = color(l2[0], l2[1], l2[2]);
+    ticks = t;
+  }
+  
+}
 
 PFont light;
 
@@ -25,8 +38,8 @@ void setup() {
   // size(400, 400);
   
   for (int i = 0; i < nextColor.length; i++) {
-      prevColor[i] = 255;
-      nextColor[i] = 255;
+      prevColor[i] = 0;
+      nextColor[i] = 0;
   }
   background(prevColor[0], prevColor[1], prevColor[2]);
   
@@ -65,28 +78,60 @@ void drawDirections() {
 }
 
 void drawScore() {
+  for (int i = 0; i < tiles.size(); i++) {
+    ColorTime ct = (ColorTime) tiles.get(i);
+    println(ct.c1);
+  }
+  println(tiles);
   if (tiles.size() < 2) {
     return;
   }
   int x = 0;
   int y = 0;
-  int gradientHeight = 20;
-  float gradientWidth = width / (float) (tiles.size() - 1);
-  for (int i = 1; i < tiles.size(); i++) {
-    float[] tile1 = (float[]) tiles.get(i-1);
-    float[] tile2 = (float[]) tiles.get(i);
-    color c1 = color(tile1[0], tile1[1], tile1[2]);
-    color c2 = color(tile2[0], tile2[1], tile2[2]);
-    setGradient(x, y, gradientWidth, gradientHeight, c1, c2, X_AXIS);
-    
-    if (x + gradientWidth >= width) {
-      x = 0;
-      y += gradientHeight;
-    } else {
-      x += gradientWidth;
-    }
+  int sum = 0;
+  for (int i = 0; i < tiles.size(); i++) {
+    ColorTime ct = (ColorTime) tiles.get(i);
+    sum += ct.ticks;
+  }
+  int unitWidth = width / sum;
+  for (int i = 0; i < tiles.size(); i++) {
+    ColorTime ct = (ColorTime) tiles.get(i);
+    int gradientWidth = unitWidth * ct.ticks;
+    // println(ct.c1);
+    println(ct.c2);
+    setGradient(x, y, gradientWidth, 40, ct.c1, ct.c2, X_AXIS);
+    x += gradientWidth;
   }
   
+}
+
+//void drawScore() {
+//  if (tiles.size() < 2) {
+//    return;
+//  }
+//  int x = 0;
+//  int y = 0;
+//  int gradientHeight = 40;
+//  float gradientWidth = width / (float) (tiles.size() - 1);
+//  for (int i = 1; i < tiles.size(); i++) {
+//    float[] tile1 = (float[]) tiles.get(i-1);
+//    float[] tile2 = (float[]) tiles.get(i);
+//    color c1 = color(tile1[0], tile1[1], tile1[2]);
+//    color c2 = color(tile2[0], tile2[1], tile2[2]);
+//    setGradient(x, y, gradientWidth, gradientHeight, c1, c2, X_AXIS);
+    
+//    if (x + gradientWidth >= width) {
+//      x = 0;
+//      y += gradientHeight;
+//    } else {
+//      x += gradientWidth;
+//    }
+//  }
+//}
+
+void hideScore() {
+  fill(0);
+  rect(0, 0, width, 40);
 }
 
 void setGradient(int x, int y, float w, float h, color c1, color c2, int axis ) {
@@ -112,13 +157,15 @@ void setGradient(int x, int y, float w, float h, color c1, color c2, int axis ) 
 }
 
 void draw() {
-  background(255);
+  background(0);
   if (frame > changeTime) {
     if (newChangeTime != changeTime) {
       changeTime = newChangeTime;
     }
     frame = 1;
-    tiles.add(new float[]{nextColor[0], nextColor[1], nextColor[2]}); //<>//
+    float[] c1 = {prevColor[0], prevColor[1], prevColor[2]};
+    float[] c2 = {nextColor[0], nextColor[1], nextColor[2]};
+    tiles.add(new ColorTime(c1, c2, changeTime / 60));
   }
   if (frame == 1) {
     for (int i = 0; i < nextColor.length; i++) {
@@ -132,8 +179,9 @@ void draw() {
     newColor[i] = prevColor[i] + (differenceVector[i] * (frame / (float) changeTime));
     // println((differenceVector[i] * (frame * (float) changeTime)));
   }
-  background(newColor[0], newColor[1], newColor[2]); //<>//
-  drawScore();
+  noStroke();
+  fill(newColor[0], newColor[1], newColor[2]);
+  rect(0, 40, width, height - 40);
   drawDirections();
   frame++;
 }
@@ -145,9 +193,11 @@ void keyPressed() {
     if (paused) {
       loop();
       paused = false;
+      hideScore();
     } else {
       noLoop();
       paused = true;
+      drawScore();
     }
   } else if (key == 'd' || key == 'D') {
     
