@@ -1,0 +1,35 @@
+http://tom-robbins.com
+
+Tom Robbins
+Improvisation for conductor, small group and ONE instrument
+
+Ideally, this piece is written for a conductor and several people (in my mind, four) to play on a single instrument.  This could be a synthesizer with many inputs, a keyboard with a large range, or even just a large object  or collection of objects with many timbres.  The conductor controls the online visual*, which displays colors meant to be intepreted by the performers in real time.  The performers must communicate between each other to create a sound they believe represents the color displayed.  So long as color is displayed, the performers must work together to create ONE SOUND to represent it.
+
+The piece can be as long as the conductor desires, and they must decide and signal when the piece ends.
+
+
+*The online visual chooses random colors, shifting between them.  The conductor can control the rate at which the colors change using the number keys 1-9.  The numbers correspond to the number of seconds it takes to get from one color to another.  The other controls are 's' (stop, start the color progression and show the "score") and 'r' (reset the color progression and "score")
+
+
+This piece explores how groups of people interpret color as sound, in a kind of reverse-synesthesia.  Using Cierra is cheating!
+
+
+DIRECTIONS FOR THE PREFORMANCE
+1. Go to http://tom-robbins.com/colorfade/colorfade.html
+2. Press 'S', then 'R' quickly
+3. When the performers are ready, press 'S'
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+The main idea of the piece is the ways we can represent interpretations of improvisational structures.  We can record soloists and follow along with the chord changes afterwords, and we can record this group's music and follow along with the "score" generated afterwards.  The score is a series of color gradients, showing the progression of color over time.

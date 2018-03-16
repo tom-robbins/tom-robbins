@@ -3,9 +3,11 @@ float[] nextColor = {255, 255, 255};
 float[] newColor = new float[3];
 float[] differenceVector = new float[3];
 
+int initialChangeTime = 480;
+
 int frame;
 int changeTime = 120;
-int newChangeTime = changeTime;
+int newChangeTime = initialChangeTime;
 
 int tileSize = 20;
 ArrayList tiles;
@@ -25,7 +27,7 @@ class ColorTime {
 
 PFont light;
 
-boolean paused = false;
+boolean paused = true;
 
 int Y_AXIS = 1;
 int X_AXIS = 2;
@@ -34,8 +36,8 @@ void setup() {
   frameRate(60);
   frame = 0;
   
-  size(window.innerWidth, window.innerHeight);
-  //size(400, 400);
+  // size(window.innerWidth, window.innerHeight);
+   size(400, 400);
   
   for (int i = 0; i < nextColor.length; i++) {
       prevColor[i] = 0;
@@ -74,7 +76,7 @@ void drawDirections() {
   rect(x, y, 170, 60, 10, 10, 10, 10);
   fill(255);
   text("r\ns\n1-9", x + 10, y + 10, 170, 60);
-  text(" - restart\n - show score\n - set speed", x + 40, y + 10, 170, 60);
+  text(" - restart\n - start/stop/score\n - set speed", x + 40, y + 10, 170, 60);
 }
 
 void drawScore() {
@@ -129,32 +131,37 @@ void setGradient(int x, int y, float w, float h, color c1, color c2, int axis ) 
 }
 
 void draw() {
-  background(0);
-  if (frame > changeTime) {
-    if (newChangeTime != changeTime) {
-      changeTime = newChangeTime;
+  if (paused) {
+    drawDirections();
+    noLoop();
+  } else {
+    background(0);
+    if (frame > changeTime) {
+      if (newChangeTime != changeTime) {
+        changeTime = newChangeTime;
+      }
+      frame = 1;
+      float[] c1 = {prevColor[0], prevColor[1], prevColor[2]};
+      float[] c2 = {nextColor[0], nextColor[1], nextColor[2]};
+      tiles.add(new ColorTime(c1, c2, changeTime / 60));
     }
-    frame = 1;
-    float[] c1 = {prevColor[0], prevColor[1], prevColor[2]};
-    float[] c2 = {nextColor[0], nextColor[1], nextColor[2]};
-    tiles.add(new ColorTime(c1, c2, changeTime / 60));
-  }
-  if (frame == 1) {
-    for (int i = 0; i < nextColor.length; i++) {
-      prevColor[i] = nextColor[i];
-      nextColor[i] = random(255);
-      differenceVector[i] = nextColor[i] - prevColor[i];
+    if (frame == 1) {
+      for (int i = 0; i < nextColor.length; i++) {
+        prevColor[i] = nextColor[i];
+        nextColor[i] = random(255);
+        differenceVector[i] = nextColor[i] - prevColor[i];
+      }
     }
+    
+    for (int i = 0; i < prevColor.length; i++) {
+      newColor[i] = prevColor[i] + (differenceVector[i] * (frame / (float) changeTime));
+    }
+    noStroke();
+    fill(newColor[0], newColor[1], newColor[2]);
+    rect(0, 0, width, height);
+    drawDirections();
+    frame++;
   }
-  
-  for (int i = 0; i < prevColor.length; i++) {
-    newColor[i] = prevColor[i] + (differenceVector[i] * (frame / (float) changeTime));
-  }
-  noStroke();
-  fill(newColor[0], newColor[1], newColor[2]);
-  rect(0, 0, width, height);
-  drawDirections();
-  frame++;
 }
 
 void keyPressed() {
@@ -166,7 +173,6 @@ void keyPressed() {
       paused = false;
       hideScore();
     } else {
-      noLoop();
       paused = true;
       drawScore();
     }
