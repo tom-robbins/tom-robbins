@@ -36,8 +36,8 @@ void setup() {
   frameRate(60);
   frame = 0;
   
-  // size(window.innerWidth, window.innerHeight);
-  size(400, 400);
+  size(window.innerWidth, window.innerHeight);
+  // size(400, 400);
   
   for (int i = 0; i < nextColor.length; i++) {
       prevColor[i] = 0;
