@@ -80,7 +80,7 @@ void drawDirections() {
   rect(x, y, 170, 60, 10, 10, 10, 10);
   fill(255);
   text("r\ns\n1-9", x + 10, y + 10, 170, 60);
-  text(" - restart\n - start/stop/show score\n - set speed", x + 40, y + 10, 170, 60);
+  text(" - restart\n - start / stop / show score\n - set speed", x + 40, y + 10, 170, 60);
 }
 
 void drawScore() {
