@@ -71,10 +71,10 @@ void drawDirections() {
   int y = height - 80;
   fill(10, 50);
   noStroke();
-  rect(x, y, 170, 80, 10, 10, 10, 10);
+  rect(x, y, 170, 60, 10, 10, 10, 10);
   fill(255);
-  text("r\ns\n1-9", x + 10, y + 10, 170, 80);
-  text(" - restart\n - show score\n - set speed", x + 40, y + 10, 170, 80);
+  text("r\ns\n1-9", x + 10, y + 10, 170, 60);
+  text(" - restart\n - show score\n - set speed", x + 40, y + 10, 170, 60);
 }
 
 void drawScore() {
