@@ -290,8 +290,10 @@ class RecordScene extends FileDropScene {
           });
       },
       callbackTempo: (topTempos) => {
-        this.tempoInput.setText(topTempos[0].tempo);
         this.setTempo(topTempos[0].tempo);
+        if (this.tempoInput) {
+          this.tempoInput.setText(topTempos[0].tempo);
+        }
       },
     });
   }
@@ -458,7 +460,7 @@ class RecordScene extends FileDropScene {
       this,
       0,
       tempoHeight,
-      DEFAULT_TEMPO.toString(),
+      this.tempo.toString(),
       {
         fixedWidth: this.tempoLabel.displayWidth,
         align: "center",
