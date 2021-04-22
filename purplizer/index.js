@@ -97,6 +97,7 @@ class BaseScene extends Phaser.Scene {
       .setOrigin(0);
   }
   update() {}
+  cleanup() {}
 }
 
 class FileDropScene extends BaseScene {
@@ -150,6 +151,7 @@ class FileDropScene extends BaseScene {
       this.dropFile.removeEventListener("dragleave", dragLeaveHandler);
       this.dropFile.removeEventListener("drop", dragLeaveHandler);
       this.dropFile.removeEventListener("drop", dropHandler);
+      this.cleanup();
       this.scene.start(CURRENT_RECORD_SCENE, { file });
     };
 
@@ -231,15 +233,24 @@ class RecordScene extends FileDropScene {
       canvasHeight: this.scale.height * 0.05,
       waveColor: "#ffffff",
       callbackWaveform: (canvas) => {
-        this.waveform = this.textures.addCanvas("waveform", canvas);
+        var waveformName = `waveform ${RECORD_SCENE_INCR}`;
+        this.waveform = this.textures.addCanvas(waveformName, canvas);
 
         // waveform left of playhead
         this.waveformPlayedTop = this.add
-          .image(this.scale.width * 0.125, this.scale.height * 0.1, "waveform")
+          .image(
+            this.scale.width * 0.125,
+            this.scale.height * 0.1,
+            waveformName
+          )
           .setOrigin(0)
           .setTint(0x4d1966);
         this.waveformPlayedBottom = this.add
-          .image(this.scale.width * 0.125, this.scale.height * 0.15, "waveform")
+          .image(
+            this.scale.width * 0.125,
+            this.scale.height * 0.15,
+            waveformName
+          )
           .setOrigin(0)
           .setFlipY(true)
           .setScale(1, 0.5)
@@ -253,10 +264,18 @@ class RecordScene extends FileDropScene {
 
         // waveform right of playhead
         this.waveformUnplayedTop = this.add
-          .image(this.scale.width * 0.125, this.scale.height * 0.1, "waveform")
+          .image(
+            this.scale.width * 0.125,
+            this.scale.height * 0.1,
+            waveformName
+          )
           .setOrigin(0);
         this.waveformUnplayedBottom = this.add
-          .image(this.scale.width * 0.125, this.scale.height * 0.15, "waveform")
+          .image(
+            this.scale.width * 0.125,
+            this.scale.height * 0.15,
+            waveformName
+          )
           .setOrigin(0)
           .setFlipY(true)
           .setScale(1, 0.5)
@@ -347,8 +366,10 @@ class RecordScene extends FileDropScene {
 
   stopSong() {
     this.playOrPauseButton.setText("▶️");
-    this.song.stop();
     this.pauseAnimations();
+    if (this.song) {
+      this.song.stop();
+    }
   }
 
   playOrPause() {
@@ -724,7 +745,8 @@ class RecordScene extends FileDropScene {
 
   cleanup() {
     super.cleanup();
-    if (this.hasOwnProperty("song")) {
+    this.stopSong();
+    if (this.song) {
       this.song.destroy();
     }
   }
