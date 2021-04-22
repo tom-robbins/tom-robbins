@@ -890,7 +890,7 @@ if (
     "beforeend",
     `<div id="upload-file-container">
         <label id="upload-file-label" for="file-loader"> tap to upload a song </label>
-        <input id="file-loader" type="file" accept="audio/*" />
+        <input id="file-loader" type="file" />
     </div>`
   );
 
