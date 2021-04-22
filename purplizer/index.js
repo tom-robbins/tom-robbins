@@ -910,7 +910,7 @@ var AUDIO_RECORDER;
 try {
   AUDIO_RECORDER = new WebAudioRecorder(PHASER.OUTPUT, {
     workerDir: "webAudioRecorder/",
-    encoding: "wav",
+    encoding: "mp3",
     options: {
       timeLimit: 3600,
       encodeAfterRecord: true,
