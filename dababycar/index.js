@@ -45,10 +45,10 @@ document.addEventListener("touchmove", touch2Mouse, true, touchOpts);
 document.addEventListener("touchend", touch2Mouse, true, touchOpts);
 
 kaboom.global();
-loadSprite("sky", "public/img/sky.png");
-loadSprite("road", "public/img/road.png");
-loadSprite("grammy", "public/img/grammy.png");
-loadSprite("car", "public/img/car.png", {
+loadSprite("sky", "assets/sky.png");
+loadSprite("road", "assets/road.png");
+loadSprite("grammy", "assets/grammy.png");
+loadSprite("car", "assets/car.png", {
   sliceX: 1,
   sliceY: 2,
   anims: {
@@ -57,10 +57,10 @@ loadSprite("car", "public/img/car.png", {
   },
 });
 
-loadSound("ha", "public/sounds/ha.ogg");
-loadSound("lets_go", "public/sounds/lets_go.ogg");
-loadSound("yeah_yeah", "public/sounds/yeah_yeah.ogg");
-loadSound("levitating", "public/sounds/levitating.mp3");
+loadSound("ha", "assets/ha.ogg");
+loadSound("lets_go", "assets/lets_go.ogg");
+loadSound("yeah_yeah", "assets/yeah_yeah.ogg");
+loadSound("levitating", "assets/levitating.mp3");
 
 var HEIGHT = 120;
 var WIDTH = 160;

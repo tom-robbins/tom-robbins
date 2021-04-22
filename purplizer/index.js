@@ -205,8 +205,8 @@ class RecordScene extends FileDropScene {
 
   preload() {
     super.preload();
-    this.load.image("record", "public/images/record.svg");
-    this.load.image("redCircle", "public/images/redCircle.png");
+    this.load.image("record", "assets/record.svg");
+    this.load.image("redCircle", "assets/redCircle.png");
   }
 
   init(data) {
