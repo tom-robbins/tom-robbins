@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <title>Purplizer</title>
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <script src="https://cdn.jsdelivr.net/npm/phaser@3.54.0/dist/phaser.min.js"></script>
+    <script src="webAudioRecorder/WebAudioRecorder.min.js"></script>
+    <script
+      type="text/javascript"
+      src="https://cdn.jsdelivr.net/npm/xsound@latest/build/xsound.min.js"
+    ></script>
+
+    <div class="drop-file" id="drop-file">
+      <div class="game-container" id="game-container"></div>
+    </div>
+
+    <a id="download-anchor" style="display: none"></a>
+
+    <script src="analyzeTempo.js"></script>
+    <script src="index.js"></script>
+  </body>
+</html>
